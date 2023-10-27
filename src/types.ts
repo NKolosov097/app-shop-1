@@ -59,7 +59,7 @@ export interface ICardItem {
 
 export interface ICardsSlicer {
   data: Array<ICardItem> | IDataError | Array<IDataErrorFromBackend> | null
-  item: ICardItem | null
+  item: ICardItem | IDataError | null
   cart: Array<ICardItem> | []
   status: Status
 }

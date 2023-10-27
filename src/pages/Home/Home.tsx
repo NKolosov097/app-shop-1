@@ -3,12 +3,7 @@ import { Card, Col, Image, Modal, Row, Skeleton, Space, Tag } from "antd"
 import { message } from "antd"
 import { priceRu, useAppDispatch, useAppSelector } from "../../hooks"
 import { Navigate } from "react-router-dom"
-import {
-  ICardItem,
-  IDataError,
-  IDataErrorFromBackend,
-  IUser,
-} from "../../types"
+import { ICardItem, IDataErrorFromBackend, IUser } from "../../types"
 import { path } from "../../path"
 import { Content } from "antd/es/layout/layout"
 import { incCardInCart } from "../../redux/slices/cards"
@@ -53,12 +48,9 @@ export const Home = (): React.JSX.Element => {
   }
 
   const isCards =
-    (cards as Array<ICardItem>)?.length > 0 &&
-    (cards as IDataError)?.message &&
-    (cards as Array<IDataErrorFromBackend>)[0]?.msg &&
-    cards
+    Array.isArray(cards) && !(cards as Array<IDataErrorFromBackend>)[0].type
       ? cards
-      : cards
+      : false
 
   return (
     <>

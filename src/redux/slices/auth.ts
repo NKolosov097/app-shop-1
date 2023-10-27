@@ -85,52 +85,44 @@ const authSlice = createSlice({
       localStorage.removeItem("token")
     },
   },
-  extraReducers: {
-    [fetchLogin.pending as unknown as string]: (state: IAuthSlicer) => {
-      state.data = null
-      state.status = Status.loading
-    },
-    [fetchLogin.fulfilled as unknown as string]: (
-      state: IAuthSlicer,
-      action
-    ) => {
-      state.data = action.payload
-      state.status = Status.loaded
-    },
-    [fetchLogin.rejected as unknown as string]: (state: IAuthSlicer) => {
-      state.data = null
-      state.status = Status.error
-    },
-    [fetchAuthMe.pending as unknown as string]: (state: IAuthSlicer) => {
-      state.data = null
-      state.status = Status.loading
-    },
-    [fetchAuthMe.fulfilled as unknown as string]: (
-      state: IAuthSlicer,
-      action
-    ) => {
-      state.data = action.payload
-      state.status = Status.loaded
-    },
-    [fetchAuthMe.rejected as unknown as string]: (state: IAuthSlicer) => {
-      state.data = null
-      state.status = Status.error
-    },
-    [fetchRegister.pending as unknown as string]: (state: IAuthSlicer) => {
-      state.data = null
-      state.status = Status.loading
-    },
-    [fetchRegister.fulfilled as unknown as string]: (
-      state: IAuthSlicer,
-      action
-    ) => {
-      state.data = action.payload
-      state.status = Status.loaded
-    },
-    [fetchRegister.rejected as unknown as string]: (state: IAuthSlicer) => {
-      state.data = null
-      state.status = Status.error
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchLogin.pending, (state: IAuthSlicer) => {
+        state.data = null
+        state.status = Status.loading
+      })
+      .addCase(fetchLogin.fulfilled, (state: IAuthSlicer, action) => {
+        state.data = action.payload
+        state.status = Status.loaded
+      })
+      .addCase(fetchLogin.rejected, (state: IAuthSlicer) => {
+        state.data = null
+        state.status = Status.error
+      })
+      .addCase(fetchAuthMe.pending, (state: IAuthSlicer) => {
+        state.data = null
+        state.status = Status.loading
+      })
+      .addCase(fetchAuthMe.fulfilled, (state: IAuthSlicer, action) => {
+        state.data = action.payload
+        state.status = Status.loaded
+      })
+      .addCase(fetchAuthMe.rejected, (state: IAuthSlicer) => {
+        state.data = null
+        state.status = Status.error
+      })
+      .addCase(fetchRegister.pending, (state: IAuthSlicer) => {
+        state.data = null
+        state.status = Status.loading
+      })
+      .addCase(fetchRegister.fulfilled, (state: IAuthSlicer, action) => {
+        state.data = action.payload
+        state.status = Status.loaded
+      })
+      .addCase(fetchRegister.rejected, (state: IAuthSlicer) => {
+        state.data = null
+        state.status = Status.error
+      })
   },
 })
 

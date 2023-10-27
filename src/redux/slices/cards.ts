@@ -105,37 +105,32 @@ const cardsSlice = createSlice({
       return state
     },
   },
-  extraReducers: {
-    [fetchGetCards.pending as unknown as string]: (state: ICardsSlicer) => {
-      state.data = null
-      state.status = Status.loading
-    },
-    [fetchGetCards.fulfilled as unknown as string]: (
-      state: ICardsSlicer,
-      action
-    ) => {
-      state.data = action.payload
-      state.status = Status.loaded
-    },
-    [fetchGetCards.rejected as unknown as string]: (state: ICardsSlicer) => {
-      state.data = null
-      state.status = Status.error
-    },
-    [fetchUpdateCard.pending as unknown as string]: (state: ICardsSlicer) => {
-      state.item = null
-      state.status = Status.loading
-    },
-    [fetchUpdateCard.fulfilled as unknown as string]: (
-      state: ICardsSlicer,
-      action
-    ) => {
-      state.item = action.payload
-      state.status = Status.loaded
-    },
-    [fetchUpdateCard.rejected as unknown as string]: (state: ICardsSlicer) => {
-      state.item = null
-      state.status = Status.error
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchGetCards.pending, (state: ICardsSlicer) => {
+        state.data = null
+        state.status = Status.loading
+      })
+      .addCase(fetchGetCards.fulfilled, (state: ICardsSlicer, action) => {
+        state.data = action.payload
+        state.status = Status.loaded
+      })
+      .addCase(fetchGetCards.rejected, (state: ICardsSlicer) => {
+        state.data = null
+        state.status = Status.error
+      })
+      .addCase(fetchUpdateCard.pending, (state: ICardsSlicer) => {
+        state.item = null
+        state.status = Status.loading
+      })
+      .addCase(fetchUpdateCard.fulfilled, (state: ICardsSlicer, action) => {
+        state.item = action.payload
+        state.status = Status.loaded
+      })
+      .addCase(fetchUpdateCard.rejected, (state: ICardsSlicer) => {
+        state.item = null
+        state.status = Status.error
+      })
   },
 })
 
